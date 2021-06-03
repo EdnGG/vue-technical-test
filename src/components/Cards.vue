@@ -1,5 +1,6 @@
 <template>
-  <div class="card" style="width: 18rem;">
+  <div class="container">
+  <!-- <div class="card" style="width: 18rem;">
   <img src="https://randomwordgenerator.com/img/picture-generator/55e8d7444e57a814f1dc8460962e33791c3ad6e04e5074417c2e7dd29744c7_640.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
@@ -8,7 +9,31 @@
       </p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
-</div>
+</div> -->
+
+
+        <ul class="list-group mt-4">
+            
+                <li class="list-group-item text-uppercase">
+                  pokemon.name
+                  <button
+                    class="btn btn-dark btn-sm float-right"
+                  > Details </button>
+                </li>
+              
+          </ul>
+        
+        <div class="d-flex justify-content-between mt-4">
+          
+            <button class="btn btn-dark">Get Pockemons</button>
+          
+            <button class="btn btn-dark">Next Pockemons</button>
+         
+             
+            <button class="btn btn-dark" >Prev Pockemons</button>
+        
+        </div>
+        </div>
 </template>
 
 <script>
