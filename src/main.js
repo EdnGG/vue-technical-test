@@ -9,6 +9,7 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+Vue.use(require('vue-moment'));
 Vue.use(VueAxios, axios);
 
 // Agregamos la URL base de la API
