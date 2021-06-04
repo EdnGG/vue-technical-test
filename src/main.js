@@ -15,7 +15,7 @@ Vue.use(VueAxios, axios);
 // Agregamos la URL base de la API
 // axios.defaults.baseURL = 'http://localhost:5000';
 // Mongo Atlas
-axios.defaults.baseURL = 'https://fulltimeforce.herokuapp.com/'
+axios.defaults.baseURL = 'https://fulltimeforce.herokuapp.com'
 Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false;
