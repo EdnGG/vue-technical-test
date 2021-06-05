@@ -13,22 +13,15 @@ export default new Vuex.Store({
   state: {
     token: '',
     userDB: {},
+    pokemons: []
   },
   mutations: {
+    getAllPokemons(state, payload) {
+      state.pokemons = payload.pokemons
+    },
     obtenerUsuario(state, payload) {
       state.token = payload.token
       state.userDB = payload.userDB
-
-      // console.log('Token: ', state.token)
-      // console.log('UsuarioDB: ', state.userDB)
-
-      // if (payload === '') {
-      //   state.userDB = ''
-      // } else {
-      //   state.userDB = decode(payload)
-      //   // router.push('/notas')
-        // router.push({ name: 'notas'})
-      // }
     },
     actualizarImagenUsuario(state, payload) {
       console.log('Payload de actualizarImagenUsuario: ', payload)
@@ -36,6 +29,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getPokemons({commit}, payload) {
+      console.log('actions from  vuex')
+      const fetchData = async () => {
+        const res = await fetch('https://pokeapi.co/api/v2/pokemon/1/')
+        // .then(response => response.json())
+        const data = await res.json()
+          // .then(data => console.log(data));
+        console.log('hey', data)
+      }
+      fetchData()
+      commit('getAllPokemons', payload)
+    },
     updateImageUsuario({ commit }, payload) {
       // localStorage.setItem('token', payload)
       console.log('Payload de updateImageUsuarios: ', payload)
@@ -48,10 +53,10 @@ export default new Vuex.Store({
     },
     // Esra accion no necesita el payload porque va a remover el token y el commit
     // va a ser nulo
-    cerrarSesion({ commit }) {
+    closeSesion({ commit }) {
       commit('obtenerUsuario', '')
       localStorage.removeItem('token')
-      router.push({name: 'login'})
+      router.push({name: 'Login'})
     },
     leerToken({commit}) {
       const token = localStorage.getItem('token')
@@ -65,7 +70,7 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    estaActivo: state => !!state.token
+    isActive: state => !!state.token
   },
   plugins: [createPersistedState()]
 })

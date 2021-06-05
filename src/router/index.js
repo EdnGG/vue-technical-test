@@ -15,26 +15,17 @@ const routes = [
   {
     path: '/signup',
     name: 'Signup',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Signup.vue')
   },
   {
     path: '/profile',
     name: 'Profile',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue'),
     meta: {requireAuth: true}
   },
   {
     path: '/home',
     name: 'Home',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue'),
     meta: {requireAuth: true}
   }
@@ -52,17 +43,9 @@ router.beforeEach((to, from, next) => {
   if (protectedPath && store.state.token === '') {
     console.log('login')
     return next({ name: 'login' })
-    // next({ name: 'notas' })
-    // Aqui se me ocurre meter un if para validar si el usuariohace un sign-up
   }
-  // if (protectedPath) {
-  //   console.log('notas')
-  //   return next({ name: 'notas' })
-  //   // next()
-  // }
   else {
     console.log('next')
-    // console.log(localStorage.getItem('token'))
     return next()
   }
 })

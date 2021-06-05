@@ -1,17 +1,22 @@
 <template>
-  <div class="container md text-center justify-content-center">
+  <div class="container">
     
-
-    <div class="card text-center" style="width: 18rem;">
-  <img :src="imageDefault" class="card-img-top" alt="...">
+    <div class="d-flex justify-content-center mt-5">
+    <div class="card" style="width: 18rem;">
+  <img :src="userDB.image ? userDB.image : imageDefault" 
+  class="card-img-top" 
+  alt="...">
   <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text">{{userDB.email}}</p>
+    <p class="card-text">{{userDB.name}}</p>
+    <p class="card-text">Active: {{userDB.activo}}</p>
+    <p class="card-text">{{userDB}}</p>
   </div>
 </div>
+</div>
 
-    <div>
+    <div class="mb-4">
       <span class="home__date--member">
-        <!-- Member since: {{ userDB.date | moment("dddd, MMMM Do YYYY") }} -->
         Member since: {{ userDB.date | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}
       </span>
     </div>
@@ -24,10 +29,10 @@
             drop-placeholder="Drop file here..."
             @change="onFileUpload"
           ></b-form-file>
-          <div class="mt-3">Selected file: {{ image ? image.name : "" }}</div>
+          <div class="mt-5">Selected file: {{ image ? image.name : "" }}</div>
         </div>
 
-        <b-button pill class="btn-block" type="submit">Upload</b-button>
+        <b-button pill class="btn-lg mt-5 mb-5" type="submit">Upload</b-button>
         <p v-if="message">Error : {{ message }}</p>
       </form>
     </div>
@@ -85,12 +90,6 @@ export default {
   padding-top: 7%;
   font-weight: bold;
 }
-img {
-  display: flex;
-  text-align: center;
-  align-items: center;
-}
-
 
 p,
 table,
@@ -99,15 +98,10 @@ button {
   color: #b8dbd9;
   font-weight: 800;
 }
-form,
+
 .form-group .formdata--div {
   background-color: #76949f;
   color: #b8dbd9;
   font-weight: 800;
 }
-/* b-form-file {
-  background-color: white;
-  color: #b8dbd9;
-  font-weight: 800;
-} */
 </style>
