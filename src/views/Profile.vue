@@ -10,7 +10,7 @@
     <p class="card-text">{{userDB.email}}</p>
     <p class="card-text">{{userDB.name}}</p>
     <p class="card-text">Active: {{userDB.activo}}</p>
-    <p class="card-text">{{userDB}}</p>
+    <!-- <p class="card-text">{{userDB}}</p> -->
   </div>
 </div>
 </div>
@@ -19,6 +19,19 @@
       <span class="home__date--member">
         Member since: {{ userDB.date | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}
       </span>
+    </div>
+
+    <div class="mb-4">
+      <button 
+      @click="showCommits()"
+      class="btn btn-lg btn-dark">
+        Show Commit History
+      </button>
+      <!-- mostrar cuando es falso -->
+      <ul v-if="!showCommitsHistory" v>
+        <li>jhjhj</li>
+        <li>jhjhj</li>
+      </ul>
     </div>
     <div class="py-2 formdata--div">
 
@@ -47,6 +60,7 @@ export default {
       imageDefault: 'https://lenguajejs.com/javascript/logo.svg',
       image: null,
       message: null,
+      showCommitsHistory: true
     }
   },
   computed: {
@@ -56,6 +70,20 @@ export default {
     // },
   },
   methods: {
+    showCommits(){
+      console.log('this: ', this.showCommitsHistory)
+      this.showCommitsHistory = false
+      console.log('this 2: ', this.showCommitsHistory)
+      if(!this.showCommitsHistory){
+        this.showCommitsHistory
+        console.log('this 3: ', this.showCommitsHistory)
+      } else {
+        this.showCommitsHistory = true
+      cconsole.log('this 4 : ', this.showCommitsHistory)
+      }
+      this.showCommitsHistory = true
+      console.log('this 5 : ', this.showCommitsHistory)
+    },
     ...mapActions(["guardarUsuario", "updateImageUsuario"]),
     uploadImage() {
       let formData = new FormData();
@@ -103,5 +131,8 @@ button {
   background-color: #76949f;
   color: #b8dbd9;
   font-weight: 800;
+}
+ul{
+  style-display: none;
 }
 </style>

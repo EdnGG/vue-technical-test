@@ -17,7 +17,7 @@ export default new Vuex.Store({
   },
   mutations: {
     getAllPokemons(state, payload) {
-      state.pokemons = payload.pokemons
+      state.pokemons = payload
     },
     obtenerUsuario(state, payload) {
       state.token = payload.token
@@ -29,17 +29,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getPokemons({commit}, payload) {
+    async getPokemons({ commit }) {
       console.log('actions from  vuex')
-      const fetchData = async () => {
-        const res = await fetch('https://pokeapi.co/api/v2/pokemon/1/')
-        // .then(response => response.json())
-        const data = await res.json()
-          // .then(data => console.log(data));
-        console.log('hey', data)
-      }
-      fetchData()
-      commit('getAllPokemons', payload)
+      const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=5')
+      const data = await res.json()
+      console.log('pokemones from vuex: ', data)
+      
+      commit('getAllPokemons', data)
+    // }
     },
     updateImageUsuario({ commit }, payload) {
       // localStorage.setItem('token', payload)

@@ -1,7 +1,8 @@
 <template>
-  <div class="container">
-    <h1>Sign Up</h1>
-    <form @submit.prevent="signUp">
+  <div  style="width: 40%" class="container justify-content-center mt-4">
+    <h1>Register</h1>
+    <hr>
+    <form  class="mt-5" @submit.prevent="signUp">
       <input
         type="text"
         placeholder="Name"
@@ -21,10 +22,7 @@
         v-model="user.pass"
       />
 
-      <div class="py-2">
-      </div>
-
-      <b-button class="btn-block" type="submit">Sign Up</b-button>
+      <b-button class="btn-block my-5" type="submit">Sign Up</b-button>
     </form>
     <div v-if="message != ''">
       <p>{{ message }}</p>

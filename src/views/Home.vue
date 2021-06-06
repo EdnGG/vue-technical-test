@@ -1,13 +1,16 @@
 <template>
+<div style="width: 100%" class="container">
     <div class="row mt-5">
       <div class="col-md-6">
     <h1>Pokemon API</h1>
-      <Cards />
+      <p>{{imagenPockeUrl}}</p>
+      <Cards :getPokemons="pokemons" @imagenPockemon="imagenPockeUrl = $event" />
     </div>
     <div class="col-md-6">
       <h1>Details</h1>
       <Details />
     </div>
+  </div>
   </div>
 </template>
 
@@ -23,15 +26,26 @@ export default {
     Cards,
     Details
   },
+  data() {
+    return {
+      pokes: this.pokemons,
+      imagenPockeUrl: ''
+    }
+  },
   created(){
-    console.log('Created')
+    console.log('getInfo')
     this.getInfo()
+  },
+  computed:{
+    ...mapState(['pokemons'])
   },
   methods: {
     ...mapActions(['getPokemons']),
     getInfo(){
-
       this.getPokemons()
+    },
+    setPokemons(){
+      return this.pokemons
     }
   }
 }

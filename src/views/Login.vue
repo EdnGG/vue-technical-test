@@ -1,7 +1,8 @@
 <template>
-  <div class="container">
+  <div style="width: 40%" class="container justify-content-center mt-4">
     <h1>Login</h1>
-    <form @submit.prevent="login">
+    <hr>
+    <form @submit.prevent="login" class="mt-5">
       <input
         type="email"
         placeholder="email"
@@ -14,12 +15,12 @@
         class="form-control my-2"
         v-model="user.pass"
       />
-      <b-button class="btn-block my-4" type="submit">Log in</b-button>
+      <b-button class="btn-block my-5" type="submit">Log in</b-button>
     </form>
     <div v-if="message != ''">
       <p>{{ message }}</p>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
