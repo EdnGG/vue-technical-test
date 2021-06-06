@@ -28,7 +28,7 @@
         Show Commit History
       </button>
       <!-- mostrar cuando es falso -->
-      <ul v-if="!showCommitsHistory" v>
+      <ul v-if="!showCommitsHistory">
         <li>jhjhj</li>
         <li>jhjhj</li>
       </ul>
@@ -65,24 +65,20 @@ export default {
   },
   computed: {
     ...mapState(["userDB"]),
-    // getDate() {
-    //   return this.userDB.date | moment("dddd, MMMM Do YYYY, h:mm:ss a");
-    // },
+  },
+  created(){
+    this.showrepos()
   },
   methods: {
-    showCommits(){
-      console.log('this: ', this.showCommitsHistory)
-      this.showCommitsHistory = false
-      console.log('this 2: ', this.showCommitsHistory)
-      if(!this.showCommitsHistory){
-        this.showCommitsHistory
-        console.log('this 3: ', this.showCommitsHistory)
-      } else {
-        this.showCommitsHistory = true
-      cconsole.log('this 4 : ', this.showCommitsHistory)
-      }
-      this.showCommitsHistory = true
-      console.log('this 5 : ', this.showCommitsHistory)
+
+    async showrepos() {
+      const res = await fetch('https://api.github.com/users/EdnGG/repos')
+      const data = await res.json()
+      console.log('Commits: ', data)
+    },
+    async showCommits(){
+      
+      this.showCommitsHistory  ? this.showCommitsHistory = false : this.showCommitsHistory = true
     },
     ...mapActions(["guardarUsuario", "updateImageUsuario"]),
     uploadImage() {

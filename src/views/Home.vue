@@ -3,12 +3,11 @@
     <div class="row mt-5">
       <div class="col-md-6">
     <h1>Pokemon API</h1>
-      <p>{{imagenPockeUrl}}</p>
       <Cards :getPokemons="pokemons" @imagenPockemon="imagenPockeUrl = $event" />
     </div>
     <div class="col-md-6">
       <h1>Details</h1>
-      <Details />
+      <Details :imagenPockemon="imagenPockeUrl"/>
     </div>
   </div>
   </div>
@@ -33,7 +32,6 @@ export default {
     }
   },
   created(){
-    console.log('getInfo')
     this.getInfo()
   },
   computed:{

@@ -4,9 +4,6 @@ import createPersistedState from 'vuex-persistedstate'
 
 import router from '../router'
 
-// Decodificar JWT
-// import decode from 'jwt-decode'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -30,13 +27,9 @@ export default new Vuex.Store({
   },
   actions: {
     async getPokemons({ commit }) {
-      console.log('actions from  vuex')
-      const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=5')
+      const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10')
       const data = await res.json()
-      console.log('pokemones from vuex: ', data)
-      
       commit('getAllPokemons', data)
-    // }
     },
     updateImageUsuario({ commit }, payload) {
       // localStorage.setItem('token', payload)
@@ -45,7 +38,6 @@ export default new Vuex.Store({
     },
     guardarUsuario({ commit }, payload) {
       localStorage.setItem('token', payload.token)
-      // console.log('Payload de guardarUsuarios: ', payload)
       commit('obtenerUsuario', payload)
     },
     // Esra accion no necesita el payload porque va a remover el token y el commit
