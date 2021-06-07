@@ -31,7 +31,6 @@
 </template>
 
 <script>
-// import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -44,10 +43,8 @@ export default {
     };
   },
   methods: {
-    // ...mapActions(["guardarUsuario"]),
     signUp() {
       this.axios
-        // ruta del API
         .post('/signup', this.user)
         .then((res) => {
           console.log('Inside of "RES" object: ', res);

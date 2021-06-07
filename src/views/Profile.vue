@@ -10,7 +10,6 @@
     <p class="card-text">{{userDB.email}}</p>
     <p class="card-text">{{userDB.name}}</p>
     <p class="card-text">Active: {{userDB.activo}}</p>
-    <!-- <p class="card-text">{{userDB}}</p> -->
   </div>
 </div>
 </div>
@@ -27,14 +26,12 @@
       class="btn btn-lg btn-dark">
         Show Commit History
       </button>
-      <!-- mostrar cuando es falso -->
+      <!-- Show when its false -->
       <ul v-if="!showCommitsHistory">
-        <li>jhjhj</li>
-        <li>jhjhj</li>
+        <li v-for="(repo, index) in showRepos" :key="index">{{repo.name}}</li>
       </ul>
     </div>
     <div class="py-2 formdata--div">
-
       <form @submit.prevent="uploadImage">
         <div class="form-group formdata--div">
           <b-form-file
@@ -60,7 +57,8 @@ export default {
       imageDefault: 'https://lenguajejs.com/javascript/logo.svg',
       image: null,
       message: null,
-      showCommitsHistory: true
+      showCommitsHistory: true,
+      showRepos : [] 
     }
   },
   computed: {
@@ -68,12 +66,13 @@ export default {
   },
   created(){
     this.showrepos()
+    // this.showMoreRepos()
   },
   methods: {
-
     async showrepos() {
       const res = await fetch('https://api.github.com/users/EdnGG/repos')
       const data = await res.json()
+      this.showRepos = data
       console.log('Commits: ', data)
     },
     async showCommits(){
@@ -90,8 +89,6 @@ export default {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => {
-          console.log("res.data: ", res.data);
-          console.log("usuarioDB ya con la imagen: ", res.data.userDB);
           this.updateImageUsuario(res.data.userDB);
         })
         .catch((e) => {
@@ -127,8 +124,5 @@ button {
   background-color: #76949f;
   color: #b8dbd9;
   font-weight: 800;
-}
-ul{
-  style-display: none;
 }
 </style>

@@ -38,11 +38,9 @@ export default {
   methods: {
     ...mapActions(["guardarUsuario"]),
     login() {
-      // console.log(this.usuario);
       this.axios
         .post("/login", this.user)
         .then((res) => {
-          // console.log(res.data);
           const data = res.data;
           console.log("res.data: ", res.data);
           console.log("Data: ", res);

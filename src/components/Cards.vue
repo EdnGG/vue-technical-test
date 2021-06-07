@@ -13,9 +13,6 @@
                 </li>
         </ul>
         <div class="d-flex justify-content-between mt-4">
-            <!-- <button class="btn btn-dark">Get Pockemons</button>
-            <button class="btn btn-dark">Next Pockemons</button>
-            <button class="btn btn-dark" >Prev Pockemons</button> -->
         </div>
         </div>
 </template>
