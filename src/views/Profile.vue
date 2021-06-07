@@ -9,7 +9,7 @@
   <div class="card-body">
     <p class="card-text">{{userDB.email}}</p>
     <p class="card-text">{{userDB.name}}</p>
-    <p class="card-text">Active: {{userDB.activo}}</p>
+    <p class="card-text">Active: {{userDB.active}}</p>
   </div>
 </div>
 </div>
@@ -66,7 +66,6 @@ export default {
   },
   created(){
     this.showrepos()
-    // this.showMoreRepos()
   },
   methods: {
     async showrepos() {
@@ -92,13 +91,13 @@ export default {
           this.updateImageUsuario(res.data.userDB);
         })
         .catch((e) => {
-          console.log("Error: ", e.response.data.err.message);
+          // console.log("Error: ", e.response.data.err.message);
           this.message = e.response.data.err.message;
         });
     },
     onFileUpload(event) {
       this.image = event.target.files[0];
-      console.log("contenido de this.image", this.image);
+      // console.log("contenido de this.image", this.image);
     },
   },
 };

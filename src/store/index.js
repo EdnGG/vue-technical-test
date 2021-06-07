@@ -21,7 +21,6 @@ export default new Vuex.Store({
       state.userDB = payload.userDB
     },
     actualizarImagenUsuario(state, payload) {
-      console.log('Payload de actualizarImagenUsuario: ', payload)
       state.userDB = payload
     }
   },
@@ -32,29 +31,19 @@ export default new Vuex.Store({
       commit('getAllPokemons', data)
     },
     updateImageUsuario({ commit }, payload) {
-      // localStorage.setItem('token', payload)
-      console.log('Payload de updateImageUsuarios: ', payload)
       commit('actualizarImagenUsuario', payload)
     },
     guardarUsuario({ commit }, payload) {
       localStorage.setItem('token', payload.token)
       commit('obtenerUsuario', payload)
     },
-    // Esra accion no necesita el payload porque va a remover el token y el commit
-    // va a ser nulo
+    // Esta accion no necesita el payload porque va a remover el token y el commit va a ser nulo
+  
     closeSesion({ commit }) {
       commit('obtenerUsuario', '')
       localStorage.removeItem('token')
       router.push({name: 'Login'})
     },
-    leerToken({commit}) {
-      const token = localStorage.getItem('token')
-      if (token) {
-        //commit('obtenerUsuario' ,token)
-      } else {
-        //commit('obtenerUsuario' , '')
-      }
-    }
   },
   modules: {
   },
