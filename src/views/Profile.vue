@@ -20,15 +20,16 @@
       </span>
     </div>
 
-    <div class="mb-4">
+    <div class="my-4">
       <button 
-      @click="showCommits()"
+      @click="showCommitsList()"
       class="btn btn-lg btn-dark">
         Show Commit History
       </button>
       <!-- Show when its false -->
-      <ul v-if="!showCommitsHistory">
-        <li v-for="(repo, index) in showRepos" :key="index">{{repo.name}}</li>
+      <ul v-if="!showCommitsHistory" class="my-4">
+        <!-- <li v-for="(repo, index) in showRepos" :key="index">{{repo.owner}}</li> -->
+        <li v-for="(repo, index) in showCommitsData" :key="index">{{repo.commit.message}}</li>
       </ul>
     </div>
     <div class="py-2 formdata--div">
@@ -58,23 +59,31 @@ export default {
       image: null,
       message: null,
       showCommitsHistory: true,
-      showRepos : [] 
+      showAllRepos : [],
+      showCommitsData : [] 
     }
   },
   computed: {
     ...mapState(["userDB"]),
   },
   created(){
-    this.showrepos()
+    this.showRepos()
+    this.gettingCommmits()
   },
   methods: {
-    async showrepos() {
+    async gettingCommmits (){
+      const res = await fetch('https://api.github.com/repos/EdnGG/vue-technical-test/commits')
+      const data = await res.json()
+      this.showCommitsData = data
+      console.log('Commits from this repository: ', data)
+    },
+    async showRepos() {
       const res = await fetch('https://api.github.com/users/EdnGG/repos')
       const data = await res.json()
-      this.showRepos = data
+      this.showAllRepos = data
       console.log('Commits: ', data)
     },
-    async showCommits(){
+    showCommitsList(){
       
       this.showCommitsHistory  ? this.showCommitsHistory = false : this.showCommitsHistory = true
     },
@@ -97,7 +106,6 @@ export default {
     },
     onFileUpload(event) {
       this.image = event.target.files[0];
-      // console.log("contenido de this.image", this.image);
     },
   },
 };
