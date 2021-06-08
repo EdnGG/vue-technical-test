@@ -9,7 +9,7 @@
   <div class="card-body">
     <p class="card-text">{{userDB.email}}</p>
     <p class="card-text">{{userDB.name}}</p>
-    <p class="card-text">Active: {{userDB.active}}</p>
+    <p class="card-text">Active user: {{userDB.active}}</p>
   </div>
 </div>
 </div>
@@ -22,14 +22,19 @@
 
     <div class="my-4">
       <button 
-      @click="showCommitsList()"
+      @click="showCommitsListElement()"
       class="btn btn-lg btn-dark">
         Show Commit History
       </button>
       <!-- Show when its false -->
       <ul v-if="!showCommitsHistory" class="my-4">
-        <!-- <li v-for="(repo, index) in showRepos" :key="index">{{repo.owner}}</li> -->
-        <li v-for="(repo, index) in showCommitsData" :key="index">{{repo.commit.message}}</li>
+        <li v-for="(repo, index) in showCommitsData" :key="index">
+          <hr>
+          <h5>{{repo.commit.message}}  </h5>  
+          <p>Author: {{repo.commit.author.name}}</p>
+          <p>Date: {{repo.commit.author.date | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
+        <!-- <p>{{repo}}</p> -->
+        </li>
       </ul>
     </div>
     <div class="py-2 formdata--div">
@@ -59,7 +64,7 @@ export default {
       image: null,
       message: null,
       showCommitsHistory: true,
-      showAllRepos : [],
+      // showAllRepos : [],
       showCommitsData : [] 
     }
   },
@@ -67,7 +72,7 @@ export default {
     ...mapState(["userDB"]),
   },
   created(){
-    this.showRepos()
+    // this.showRepos()
     this.gettingCommmits()
   },
   methods: {
@@ -77,14 +82,8 @@ export default {
       this.showCommitsData = data
       console.log('Commits from this repository: ', data)
     },
-    async showRepos() {
-      const res = await fetch('https://api.github.com/users/EdnGG/repos')
-      const data = await res.json()
-      this.showAllRepos = data
-      console.log('Commits: ', data)
-    },
-    showCommitsList(){
-      
+    
+    showCommitsListElement(){
       this.showCommitsHistory  ? this.showCommitsHistory = false : this.showCommitsHistory = true
     },
     ...mapActions(["guardarUsuario", "updateImageUsuario"]),
@@ -123,13 +122,16 @@ p,
 table,
 form,
 button {
-  color: #b8dbd9;
-  font-weight: 800;
+color: hsl(246, 4%, 53%);  
+font-weight: 800;
+}
+ul{
+  list-style:none
 }
 
 .form-group .formdata--div {
   background-color: #76949f;
-  color: #b8dbd9;
+  color: hsl(249, 92%, 64%);
   font-weight: 800;
 }
 </style>

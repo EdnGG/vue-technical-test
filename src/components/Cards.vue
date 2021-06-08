@@ -13,6 +13,11 @@
                 </li>
         </ul>
         <div class="d-flex justify-content-between mt-4">
+          <!-- <button 
+            class="btn btn-dark"
+            @click="getNextPokemons(getPokemons.next)"
+          > Next
+          </button> -->
         </div>
         </div>
 </template>
@@ -23,7 +28,8 @@ export default {
   props: ['getPokemons'],
   data(){
     return {
-      imgUrl : ''
+      imgUrl : '',
+      nextPokemons: []
     }
   }, 
   methods: {
@@ -32,6 +38,12 @@ export default {
       const data = await res.json()
       this.imgUrl = data
       this.$emit('imagenPockemon', this.imgUrl)
+    },
+    async getNextPokemons (url) {
+      const res = await fetch(url)
+      const data = await res.json()
+      console.log(data.results)
+      this.nextPokemons = data.results
     }
   },
   beforeUpdate(){
