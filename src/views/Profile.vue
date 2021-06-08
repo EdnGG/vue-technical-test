@@ -80,7 +80,7 @@ export default {
       const res = await fetch('https://api.github.com/repos/EdnGG/vue-technical-test/commits')
       const data = await res.json()
       this.showCommitsData = data
-      console.log('Commits from this repository: ', data)
+      // console.log('Commits from this repository: ', data)
     },
     
     showCommitsListElement(){
@@ -90,7 +90,7 @@ export default {
     uploadImage() {
       let formData = new FormData();
       formData.append("image", this.image);
-      console.log("form-data: ", formData);
+      // console.log("form-data: ", formData);
       this.axios
         .put(`/upload/${this.userDB._id}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },

@@ -1,6 +1,6 @@
 <template>
 <div style="width: 100%" class="container">
-  <p>{{pokemons.next}}</p>
+  <!-- <p>{{pokemons.next}}</p> -->
     <div class="row mt-5">
       <div class="col-md-6">
     <h1>Pokemon API</h1>
