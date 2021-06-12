@@ -32,6 +32,20 @@ import { mapActions } from 'vuex';
 export default {
   data() {
     return {
+      params: {
+        client_id: process.env.VUE_APP_KEY_GOOGLE_CLIENT_ID
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
+      },
+      googleUser: {
+        name: '',
+        email: '',
+        imgUrl: '',
+        id_token: ''
+      },
       user: {
         email: '',
         pass: '',
