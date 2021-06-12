@@ -55,6 +55,37 @@ export default {
   },
   methods: {
     ...mapActions(["guardarUsuario"]),
+    onFailure(){
+      console.log('Autentication failure')
+    },
+    onSuccess(googleUser){
+      console.log('google sign in: ',googleUser);
+
+      // This only gets the user information: id, name, imageUrl and email
+      console.log('1er console: ', googleUser.getBasicProfile());
+      this.googleUser.name = googleUser.getBasicProfile().Ve
+      this.googleUser.email = googleUser.getBasicProfile().ku
+      this.googleUser.imgUrl = googleUser.getBasicProfile().ZJ
+      this.googleUser.id_token = googleUser.getAuthResponse().id_token;
+      console.log('google user modified : ', this.googleUser)
+
+      let id_token = googleUser.getAuthResponse().id_token;
+      // console.log('Token de Google: ' + id_token)
+
+      this.axios
+        .post("/google",)
+        .then((res) => {
+          const data = res.data;
+          console.log("res.data: ", res.data);
+          console.log("Data: ", res);
+          this.guardarUsuario(data);
+          this.$router.push({ name: "Home" });
+        })
+        .catch((e) => {
+          console.log(e.response);
+          this.mensaje = e.response;
+        });
+    },
     login() {
       this.axios
         .post("/login", this.user)
