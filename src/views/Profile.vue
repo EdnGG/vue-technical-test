@@ -9,6 +9,7 @@
   <div class="card-body">
     <p class="card-text">{{userDB.email}}</p>
     <p class="card-text">{{userDB.name}}</p>
+    <!-- <p class="card-text">{{userDB}}</p> -->
     <p class="card-text">Active user: {{userDB.active}}</p>
   </div>
 </div>
@@ -74,6 +75,7 @@ export default {
   created(){
     // this.showRepos()
     this.gettingCommmits()
+    console.log('User: ', this.userDB)
   },
   methods: {
     async gettingCommmits (){

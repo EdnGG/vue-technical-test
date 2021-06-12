@@ -55,7 +55,7 @@ export default {
           this.message = e.response.message;
         });
     },
-  },
+  }, 
 };
 </script>
 

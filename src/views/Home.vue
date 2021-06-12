@@ -34,18 +34,17 @@ export default {
   },
   created(){
     this.getInfo()
+    console.log('.env: ', process.env.VUE_APP_KEY_LOCAL)
+    console.log('userDB: ', this.userDB)
   },
   computed:{
-    ...mapState(['pokemons'])
+    ...mapState(['pokemons', 'userDB'])
   },
   methods: {
     ...mapActions(['getPokemons']),
     getInfo(){
       this.getPokemons()
     },
-    // setPokemons(){
-    //   return this.pokemons
-    // }
   }
 }
 </script>

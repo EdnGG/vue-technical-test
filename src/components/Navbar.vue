@@ -5,6 +5,8 @@
     <router-link class="navbar-brand" v-if='isActive' to="/profile">Profile</router-link>
     <router-link class="navbar-brand" v-if='!isActive' to="/">Login</router-link>
     <router-link class="navbar-brand" v-if='!isActive' to="/signup">Register</router-link>
+    <!-- <GoogleLogin :params="params" :logoutButton=true>Logout</GoogleLogin> -->
+
     <a class="navbar-brand" v-if='isActive' @click='closeSesion()'>Log Out</a>
     
   </nav>
@@ -13,6 +15,8 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
+// import GoogleLogin from 'vue-google-login';
+
 
 export default {
   methods: {
