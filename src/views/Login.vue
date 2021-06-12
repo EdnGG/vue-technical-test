@@ -17,6 +17,10 @@
       />
       <b-button class="btn-block my-5" type="submit">Log in</b-button>
     </form>
+
+    <div>
+      <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+    </div>
     <div v-if="message != ''">
       <p>{{ message }}</p>
     </div>
