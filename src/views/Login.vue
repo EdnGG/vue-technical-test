@@ -119,7 +119,7 @@ export default {
         })
         .catch((e) => {
           this.message.text = e.response.data.message;
-          this.message.color = 'success'
+          this.message.color = 'danger'
           this.showAlert()
         });
     },

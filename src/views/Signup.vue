@@ -72,7 +72,7 @@ export default {
           console.log('Error from frontend logic', e);
           console.log('log: ', e.response.data.error.errors.name.message)
           this.message.text = e.response.data.error.errors.name.message;
-          this.message.color = 'success'
+          this.message.color = 'danger'
           this.showAlert()
         });
     },

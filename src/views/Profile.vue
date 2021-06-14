@@ -64,7 +64,6 @@ export default {
       image: null,
       message: null,
       showCommitsHistory: true,
-      // showAllRepos : [],
       showCommitsData : [] 
     }
   },
