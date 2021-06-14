@@ -1,6 +1,15 @@
 <template>
   <div  style="width: 40%" class="container justify-content-center mt-4">
     <h1>Register</h1>
+    <b-alert
+      :show="dismissCountDown"
+      dismissible
+      :variant="message.color"
+      @dismissed="dismissCountDown = 0"
+      @dismiss-count-down="countDownChanged"
+    >
+      {{ message.text }}
+    </b-alert>
     <hr>
     <form  class="mt-5" @submit.prevent="signUp">
       <input
@@ -24,9 +33,6 @@
 
       <b-button class="btn-block my-5" type="submit">Sign Up</b-button>
     </form>
-    <div v-if="message != ''">
-      <p>{{ message }}</p>
-    </div>
   </div>
 </template>
 
@@ -34,15 +40,27 @@
 export default {
   data() {
     return {
+      dismissSecs: 5,
+      dismissCountDown: 0,
+      message: {
+        color: "",
+        text: "",
+      },
       user: {
         name: '',
         email: '',
         pass: '',
       },
-      message: ''
+      // message: ''
     };
   },
   methods: {
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
+    showAlert() {
+      this.dismissCountDown = this.dismissSecs;
+    },
     signUp() {
       this.axios
         .post('/signup', this.user)
@@ -52,7 +70,10 @@ export default {
         })
         .catch((e) => {
           console.log('Error from frontend logic', e);
-          this.message = e.response.message;
+          console.log('log: ', e.response.data.error.errors.name.message)
+          this.message.text = e.response.data.error.errors.name.message;
+          this.message.color = 'danger'
+          this.showAlert()
         });
     },
   }, 
