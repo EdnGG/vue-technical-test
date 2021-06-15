@@ -119,6 +119,7 @@ export default {
         })
         .catch((e) => {
           this.message.text = e.response.data.message;
+          console.log('messages: ', e.response.data.message)
           this.message.color = 'danger'
           this.showAlert()
         });

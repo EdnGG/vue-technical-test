@@ -13,7 +13,7 @@ Vue.use(require('vue-moment'));
 Vue.use(VueAxios, axios);
 
 // Agregamos la URL base de la API
-axios.defaults.baseURL = process.env.VUE_APP_KEY_LOCAL
+axios.defaults.baseURL = process.env.VUE_APP_KEY_CLOUD
 Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false;
