@@ -26,61 +26,21 @@
       />
       <b-button class="btn-block my-5" type="submit">Log in</b-button>
     </form>
-<<<<<<< HEAD
-    
-    <div v-if="message != ''">
-      <p>{{ message }}</p>
-    </div>
-    <hr>
-
-    <!-- <button 
-      @click="signinGoogle()"
-      class="btn btn-lg btn-dark">Google
-    </button>  -->
-
-    <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
-
-
-    <hr>
-    </div>
-=======
 
     <div>
       <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
     </div>
   </div>
->>>>>>> dev
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import GoogleLogin from 'vue-google-login';
+import GoogleLogin from 'vue-google-login'
 
 export default {
-  data() {
-    return {
-      params: {
-        client_id: process.env.VUE_APP_KEY_GOOGLE_CLIENT_ID
-      },
-      renderParams: {
-        width: 250,
-        height: 50,
-        longtitle: true
-      },
-      googleUser: {
-        name: '',
-        email: '',
-        imgUrl: '',
-        id_token: ''
-      },
-=======
-// import GoogleLogin from 'vue-google-login'
-=======
-import GoogleLogin from 'vue-google-login'
->>>>>>> dev
-export default {
+  components: {
+    GoogleLogin
+  },
   data() {
     return {
       params: {
@@ -97,67 +57,15 @@ export default {
         height: 50,
         longtitle: true
       },
-      // googleUser: {
-      //   name: '',
-      //   email: '',
-      //   imgUrl: '',
-      //   id_token: ''
-      // },
->>>>>>> dev
+    
       user: {
         email: '',
         pass: '',
       },
-      // id_token : ''
     };
   },
-<<<<<<< HEAD
-<<<<<<< HEAD
-  components: {
-    GoogleLogin
-  },
-  methods: {
-    ...mapActions(["guardarUsuario"]),
-    onFailure(){
-      console.log('Autentication failure')
-    },
-    onSuccess(googleUser){
-      console.log('google sign in: ',googleUser);
 
-      // This only gets the user information: id, name, imageUrl and email
-      console.log('1er console: ', googleUser.getBasicProfile());
-      this.googleUser.name = googleUser.getBasicProfile().Ve
-      this.googleUser.email = googleUser.getBasicProfile().ku
-      this.googleUser.imgUrl = googleUser.getBasicProfile().ZJ
-      this.googleUser.id_token = googleUser.getAuthResponse().id_token;
-      console.log('google user modified : ', this.googleUser)
-
-      // let id_token = googleUser.getAuthResponse().id_token;
-      // console.log('Token de Google: ' + id_token)
-
-      this.axios
-        .post("/google", googleUser.getAuthResponse().id_token)
-        .then((res) => {
-          const data = res.data;
-          console.log("res.data: ", res.data);
-          console.log("Data: ", res);
-          this.guardarUsuario(data);
-          this.$router.push({ name: "Home" });
-        })
-        .catch((e) => {
-          console.log(e.response);
-          this.mensaje = e.response;
-        });
-    },
-=======
-  // components: {
-  //   GoogleLogin
-  // },
-=======
-  components: {
-    GoogleLogin
-  },
->>>>>>> dev
+  
   methods: {
     ...mapActions(["guardarUsuario"]),
     countDownChanged(dismissCountDown) {
@@ -176,27 +84,6 @@ export default {
       console.log('1er console: ', googleUser.getBasicProfile());
     
       this.id_token = googleUser.getAuthResponse().id_token;
-      
-
-<<<<<<< HEAD
-    //   this.axios
-    //     .post("/google", googleUser.getAuthResponse().id_token)
-    //     .then((res) => {
-    //       const data = res.data;
-    //       const data2 = res.data.json()
-    //       console.log("res.data: ", data);
-    //       console.log('data 2: ', data2)
-    //       console.log("Data: ", res);
-    //       this.guardarUsuario(data);
-    //       this.$router.push({ name: "Home" });
-    //     })
-    //     .catch((e) => {
-    //       console.log(e.response);
-    //       this.mensaje = e.response;
-    //     });
-    // },
->>>>>>> dev
-=======
       this.axios
         .post("/google", {id_token: this.id_token})
         .then((res) => {
@@ -211,7 +98,6 @@ export default {
           this.mensaje = e.response;
         });
     },
->>>>>>> dev
     login() {
       console.log('Login function')
       this.axios
