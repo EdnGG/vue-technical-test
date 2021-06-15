@@ -69,9 +69,9 @@ export default {
   },
   computed: {
     ...mapState(["userDB"]),
+    
   },
   created(){
-    // this.showRepos()
     this.gettingCommmits()
   },
   methods: {

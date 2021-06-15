@@ -41,12 +41,11 @@ router.beforeEach((to, from, next) => {
   // console.log(next())
   const protectedPath = to.matched.some(record => record.meta.requireAuth) 
   if (protectedPath && store.state.token === '') {
-    console.log('login')
-    return next({ name: 'login' })
+    next({ name: 'Login' })
   }
   else {
     // console.log('next')
-    return next()
+    next()
   }
 })
 
