@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate' 
 
 import router from '../router'
 
@@ -18,7 +18,7 @@ export default new Vuex.Store({
     },
     obtenerUsuario(state, payload) {
       state.token = payload.token
-      state.userDB = payload.userDB
+      state.userDB = payload.user
     },
     actualizarImagenUsuario(state, payload) {
       state.userDB = payload

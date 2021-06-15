@@ -70,9 +70,9 @@ export default {
   },
   computed: {
     ...mapState(["userDB"]),
+    
   },
   created(){
-    // this.showRepos()
     this.gettingCommmits()
     console.log('User: ', this.userDB)
   },

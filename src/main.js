@@ -20,6 +20,7 @@ Vue.use(VueAxios, axios);
 
 // Agregamos la URL base de la API
 <<<<<<< HEAD
+<<<<<<< HEAD
 // axios.defaults.baseURL = process.env.VUE_APP_KEY_LOCAL;
 
 axios.defaults.baseUrl = 'http://localhost:5000'
@@ -27,6 +28,9 @@ axios.defaults.baseUrl = 'http://localhost:5000'
 // axios.defaults.baseURL = PROCESS.ENV.VUE_APP_KEY_CLOUD
 =======
 axios.defaults.baseURL = process.env.VUE_APP_KEY_LOCAL
+>>>>>>> dev
+=======
+axios.defaults.baseURL = process.env.VUE_APP_KEY_CLOUD
 >>>>>>> dev
 Vue.use(BootstrapVue);
 

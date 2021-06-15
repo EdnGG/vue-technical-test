@@ -51,10 +51,14 @@ export default {
         email: '',
         pass: '',
       },
-      // message: ''
     };
   },
   methods: {
+    // welcome (){
+    //   this.message.text = `Welcome ${this.user.name}, now please login`
+    //   this.message.color = 'danger'
+    //   this.showAlert()
+    // },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
     },
@@ -65,15 +69,20 @@ export default {
       this.axios
         .post('/signup', this.user)
         .then((res) => {
-          console.log('Inside of "RES" object: ', res);
+
+          // console.log('Inside of "RES" object: ', res);
+          // this.message.text = `Welcome ${this.user.name}, now please login`
+          // this.message.color = 'danger'
+          // this.showAlert()
+
           this.$router.push({ name: "Login" });
         })
         .catch((e) => {
-          console.log('Error from frontend logic', e);
-          console.log('log: ', e.response.data.error.errors.name.message)
-          this.message.text = e.response.data.error.errors.name.message;
-          this.message.color = 'danger'
-          this.showAlert()
+
+          // console.log(e.response.data.message)
+            this.message.text = e.response.data.message
+            this.message.color = 'danger'
+            this.showAlert()
         });
     },
   }, 

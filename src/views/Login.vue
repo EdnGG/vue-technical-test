@@ -45,15 +45,16 @@
     </div>
 =======
 
-    <!-- <div>
+    <div>
       <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
-    </div> -->
+    </div>
   </div>
 >>>>>>> dev
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+<<<<<<< HEAD
 <<<<<<< HEAD
 import GoogleLogin from 'vue-google-login';
 
@@ -76,23 +77,26 @@ export default {
       },
 =======
 // import GoogleLogin from 'vue-google-login'
+=======
+import GoogleLogin from 'vue-google-login'
+>>>>>>> dev
 export default {
   data() {
     return {
-      // params: {
-      //   client_id: process.env.VUE_APP_KEY_GOOGLE_CLIENT_ID
-      // },
+      params: {
+        client_id: process.env.VUE_APP_KEY_GOOGLE_CLIENT_ID
+      },
       dismissSecs: 5,
       dismissCountDown: 0,
       message: {
         color: "",
         text: "",
       },
-      // renderParams: {
-      //   width: 250,
-      //   height: 50,
-      //   longtitle: true
-      // },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
+      },
       // googleUser: {
       //   name: '',
       //   email: '',
@@ -107,6 +111,7 @@ export default {
       // id_token : ''
     };
   },
+<<<<<<< HEAD
 <<<<<<< HEAD
   components: {
     GoogleLogin
@@ -148,6 +153,11 @@ export default {
   // components: {
   //   GoogleLogin
   // },
+=======
+  components: {
+    GoogleLogin
+  },
+>>>>>>> dev
   methods: {
     ...mapActions(["guardarUsuario"]),
     countDownChanged(dismissCountDown) {
@@ -156,20 +166,19 @@ export default {
     showAlert() {
       this.dismissCountDown = this.dismissSecs;
     },
-    // onFailure(onFailure){
-    //   console.log('Autentication failure', onFailure)
-    // },
-    // onSuccess(googleUser){
-    //   console.log('google sign in: ',googleUser);
+    onFailure(onFailure){
+      console.log('Autentication failure', onFailure)
+    },
+    onSuccess(googleUser){
+      console.log('google sign in: ',googleUser);
 
-    //   // This only gets the user information: id, name, imageUrl and email
-    //   // console.log('1er console: ', googleUser.getBasicProfile());
+      // This only gets the user information: id, name, imageUrl and email
+      console.log('1er console: ', googleUser.getBasicProfile());
     
-    //   this.id_token = googleUser.getAuthResponse().id_token;
-    //   // const data = JSON.stringify(id_token)
-    //   // console.log('id token :', JSON.stringify(googleUser.getAuthResponse().id_token))
-    //   // console.log('Data: ', data)
+      this.id_token = googleUser.getAuthResponse().id_token;
+      
 
+<<<<<<< HEAD
     //   this.axios
     //     .post("/google", googleUser.getAuthResponse().id_token)
     //     .then((res) => {
@@ -187,19 +196,36 @@ export default {
     //     });
     // },
 >>>>>>> dev
+=======
+      this.axios
+        .post("/google", {id_token: this.id_token})
+        .then((res) => {
+          const data = res.data;
+          // console.log("Data: ", data);
+          // console.log("user: ", data.user);
+          this.guardarUsuario(data);
+          this.$router.push({ name: "Home" });
+        })
+        .catch((e) => {
+          // console.log(e.response);
+          this.mensaje = e.response;
+        });
+    },
+>>>>>>> dev
     login() {
       console.log('Login function')
       this.axios
         .post('/login', this.user)
         .then((res) => {
           const data = res.data;
-          console.log("res.data: ", res.data);
-          console.log("Data: ", res);
+          // console.log("res.data: ", res.data);
+          // console.log("Data: ", res);
           this.guardarUsuario(data);
           this.$router.push({ name: "Home" });
         })
         .catch((e) => {
           this.message.text = e.response.data.message;
+          // console.log('messages: ', e.response.data.message)
           this.message.color = 'danger'
           this.showAlert()
         });
