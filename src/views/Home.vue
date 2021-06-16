@@ -1,6 +1,5 @@
 <template>
 <div style="width: 100%" class="container">
-  <!-- <p>{{pokemons.next}}</p> -->
     <div class="row mt-5">
       <div class="col-md-6">
     <h1>Pokemon API</h1>
@@ -33,18 +32,13 @@ export default {
     }
   },
   created(){
-    this.getInfo()
-    console.log('.env: ', process.env.VUE_APP_KEY_LOCAL)
-    console.log('userDB: ', this.userDB)
+    this.getPokemons()
   },
   computed:{
     ...mapState(['pokemons', 'userDB'])
   },
   methods: {
     ...mapActions(['getPokemons']),
-    getInfo(){
-      this.getPokemons()
-    },
   }
 }
 </script>

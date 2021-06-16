@@ -57,7 +57,7 @@ export default {
         height: 50,
         longtitle: true
       },
-    
+      id_token : '',
       user: {
         email: '',
         pass: '',
@@ -81,37 +81,32 @@ export default {
       console.log('google sign in: ',googleUser);
 
       // This only gets the user information: id, name, imageUrl and email
-      console.log('1er console: ', googleUser.getBasicProfile());
+      console.log('Google info user : ', googleUser.getBasicProfile());
     
       this.id_token = googleUser.getAuthResponse().id_token;
       this.axios
         .post("/google", {id_token: this.id_token})
         .then((res) => {
-          const data = res.data;
-          // console.log("Data: ", data);
-          // console.log("user: ", data.user);
+          const data = res.data;          
           this.guardarUsuario(data);
           this.$router.push({ name: "Home" });
         })
         .catch((e) => {
-          // console.log(e.response);
-          this.mensaje = e.response;
+          this.message.text = e.response.data.msg;
+          this.message.color = 'danger'
+          this.showAlert()
         });
     },
     login() {
-      console.log('Login function')
       this.axios
         .post('/login', this.user)
         .then((res) => {
           const data = res.data;
-          // console.log("res.data: ", res.data);
-          // console.log("Data: ", res);
           this.guardarUsuario(data);
           this.$router.push({ name: "Home" });
         })
         .catch((e) => {
           this.message.text = e.response.data.message;
-          // console.log('messages: ', e.response.data.message)
           this.message.color = 'danger'
           this.showAlert()
         });

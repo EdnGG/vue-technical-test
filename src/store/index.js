@@ -18,7 +18,7 @@ export default new Vuex.Store({
     },
     obtenerUsuario(state, payload) {
       state.token = payload.token
-      state.userDB = payload.user
+      state.userDB = payload.userDB
     },
     actualizarImagenUsuario(state, payload) {
       state.userDB = payload
@@ -40,9 +40,9 @@ export default new Vuex.Store({
     // Esta accion no necesita el payload porque va a remover el token y el commit va a ser nulo
   
     closeSesion({ commit }) {
-      commit('obtenerUsuario', '')
       localStorage.removeItem('token')
       router.push({name: 'Login'})
+      commit('obtenerUsuario', '')
     },
   },
   modules: {

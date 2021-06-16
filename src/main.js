@@ -21,8 +21,8 @@ Vue.use(VueAxios, axios);
 // Agregamos la URL base de la API
 
 // Mongo Atlas
-// axios.defaults.baseURL = PROCESS.ENV.VUE_APP_KEY_CLOUD
-axios.defaults.baseURL = process.env.VUE_APP_KEY_CLOUD
+axios.defaults.baseURL = PROCESS.ENV.VUE_APP_KEY_CLOUD
+// axios.defaults.baseURL = process.env.VUE_APP_KEY_LOCAL
 
 Vue.use(BootstrapVue);
 

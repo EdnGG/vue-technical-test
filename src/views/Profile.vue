@@ -9,7 +9,7 @@
   <div class="card-body">
     <p class="card-text">{{userDB.email}}</p>
     <p class="card-text">{{userDB.name}}</p>
-    <!-- <p class="card-text">{{userDB}}</p> -->
+    <p class="card-text">Google User: {{userDB.google}}</p>
     <p class="card-text">Active user: {{userDB.active}}</p>
   </div>
 </div>
@@ -34,7 +34,6 @@
           <h5>{{repo.commit.message}}  </h5>  
           <p>Author: {{repo.commit.author.name}}</p>
           <p>Date: {{repo.commit.author.date | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</p>
-        <!-- <p>{{repo}}</p> -->
         </li>
       </ul>
     </div>
@@ -74,14 +73,12 @@ export default {
   },
   created(){
     this.gettingCommmits()
-    console.log('User: ', this.userDB)
   },
   methods: {
     async gettingCommmits (){
       const res = await fetch('https://api.github.com/repos/EdnGG/vue-technical-test/commits')
       const data = await res.json()
       this.showCommitsData = data
-      // console.log('Commits from this repository: ', data)
     },
     
     showCommitsListElement(){
